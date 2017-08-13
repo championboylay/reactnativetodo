@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { TextInput, Text, View, TouchableOpacity } from "react-native";
 
-export default class Main extends Component {
+export default class Header extends Component {
   render() {
     return (
       <View style={styles.header}>
@@ -14,7 +14,7 @@ export default class Main extends Component {
           value={this.props.value}
           onChangeText={this.props.onChange}
           onSubmitEditing={this.props.onAddItem}
-          style={styles.task}
+          style={styles.input}
           placeholder="What needs to do?"
         />
       </View>
@@ -23,17 +23,19 @@ export default class Main extends Component {
 }
 
 const styles = {
-  header: {
-    flexDirection: "row",
-    paddingHorizontal: 16,
-    justifyContent: "space-between",
-    alignItems: "center"
-  },
-  task: {
+  input: {
     flex: 1,
-    fontSize: 16
+    height: 50,
+    marginLeft: 16
   },
   toggleIcon: {
-    fontSize: 30
+    fontSize: 30,
+    color: "#CCC"
+  },
+  header: {
+    paddingHorizontal: 15,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center"
   }
 };
