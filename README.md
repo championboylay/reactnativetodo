@@ -1,7 +1,7 @@
 # reactnativetodo
 
 
-- [ ] TODO
+- [*] TODO
 - [ ] Integrate with Redux
 - [ ] Integrate Axio
 - [ ] Integrate React Navigation
