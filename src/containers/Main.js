@@ -5,7 +5,8 @@ import {
   Text,
   View,
   ListView,
-  Keyboard
+  Keyboard,
+  AsyncStorage
 } from "react-native";
 import Header from "../components/Header";
 import Row from "../components/Row";
@@ -26,6 +27,18 @@ export default class Main extends Component {
     this.handleToggleComplete = this.handleToggleComplete.bind(this);
     this.handleRemoveItem = this.handleRemoveItem.bind(this);
     //this.createDataSource(this.state);
+    console.log("Rendering constructor");
+  }
+
+  componentWillMount() {
+    AsyncStorage.getItem("items").then(json => {
+      try {
+        const items = JSON.parse(json);
+        this.setSource(items, items);
+      } catch (e) {
+        console.error(e);
+      }
+    });
   }
 
   /*componentDidUpdate(prevProps, prevState) {
@@ -62,9 +75,11 @@ export default class Main extends Component {
       items,
       value: ""
     });
+    AsyncStorage.setItem("items", JSON.stringify(items));
   }
 
   setSource(items, itemDataSource) {
+    console.log("Setting data source");
     this.setState({
       items,
       dataSource: this.state.dataSource.cloneWithRows(itemDataSource)
@@ -82,13 +97,13 @@ export default class Main extends Component {
     this.setSource(newItems, newItems);
   }
   handleRemoveItem(key) {
-    console.log("Deleting " + key);
     const newItems = this.state.items.filter(item => {
       return item.key !== key;
     });
     this.setSource(newItems, newItems);
   }
   renderRow(item) {
+    console.log("Rendering ROw", item);
     return (
       <Row
         key={item.key}
