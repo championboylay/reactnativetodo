@@ -18,7 +18,7 @@ export default class Main extends Component {
     });
 
     this.state = {
-      allComplete: false,
+      /*allComplete: false,*/
       value: "",
       items: [],
       dataSource: ds.cloneWithRows([])
@@ -35,7 +35,7 @@ export default class Main extends Component {
     }
   }*/
 
-  handleToggleAllComplete() {
+  /*handleToggleAllComplete() {
     const complete = !this.state.allComplete;
     const newItems = this.state.items.map(item => {
       return { ...item, complete };
@@ -46,7 +46,7 @@ export default class Main extends Component {
       allComplete: complete
     });
     this.setSource(newItems, newItems);
-  }
+  }*/
   handleAddingTask() {
     if (!this.state.value) return;
     const items = [
@@ -73,7 +73,6 @@ export default class Main extends Component {
   handleToggleComplete(key, complete) {
     const newItems = this.state.items.map(item => {
       if (item.key !== key) return item;
-      console.log(...item);
       return {
         ...item,
         complete
@@ -107,7 +106,7 @@ export default class Main extends Component {
           value={this.state.value}
           onAddItem={this.handleAddingTask.bind(this)}
           onChange={value => this.setState({ value })}
-          onToggleAllComplete={this.handleToggleAllComplete.bind(this)}
+          /* onToggleAllComplete={this.handleToggleAllComplete.bind(this)}*/
         />
         <View>
           <ListView
