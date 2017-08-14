@@ -9,8 +9,10 @@ import {
 } from "react-native";
 import Header from "../components/Header";
 import Row from "../components/Row";
+import { updateTask, saveTask } from "../actions/Actions";
+import { connect } from "react-redux";
 
-export default class Main extends Component {
+class Main extends Component {
   constructor(props) {
     super(props);
     const ds = new ListView.DataSource({
@@ -105,7 +107,7 @@ export default class Main extends Component {
         <Header
           value={this.state.value}
           onAddItem={this.handleAddingTask.bind(this)}
-          onChange={value => this.setState({ value })}
+          onChange={value => this.props.updateTask({ prop: "value", value })}
           /* onToggleAllComplete={this.handleToggleAllComplete.bind(this)}*/
         />
         <View>
@@ -124,6 +126,11 @@ export default class Main extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  console.log(state);
+  return state;
+};
+export default connect(mapStateToProps, { UPDATE_VALUE, SAVE_TASK })(Main);
 
 const styles = {
   container: {
