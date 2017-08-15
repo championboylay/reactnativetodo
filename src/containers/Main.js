@@ -6,7 +6,8 @@ import {
   View,
   ListView,
   Keyboard,
-  AsyncStorage
+  AsyncStorage,
+  ActivityIndicator
 } from "react-native";
 import Header from "../components/Header";
 import Row from "../components/Row";
@@ -14,7 +15,8 @@ import {
   updateTask,
   saveTask,
   deleteTask,
-  changeStatus
+  changeStatus,
+  fetchTaskList
 } from "../actions/Actions";
 import { connect } from "react-redux";
 
@@ -34,26 +36,28 @@ class Main extends Component {
     this.handleToggleComplete = this.handleToggleComplete.bind(this);
     this.handleRemoveItem = this.handleRemoveItem.bind(this);
     //this.createDataSource(this.state);
-    console.log("Rendering constructor");
   }
 
   componentWillMount() {
-    AsyncStorage.getItem("items").then(json => {
+    this.props.fetchTaskList();
+    /*  AsyncStorage.getItem("items").then(json => {
       try {
         const items = JSON.parse(json);
         // this.setSource(items, items);
+        
       } catch (e) {
         console.error(e);
       }
-    });
+    }); */
   }
 
   componentWillReceiveProps(nextProps) {
-    const { render } = nextProps;
+    console.log("RECEIVING PROPS", nextProps);
+    const { render, tasks } = nextProps;
     if (render) {
       this.setSource(nextProps.tasks, nextProps.tasks);
     } else {
-      console.log("RECEIVING PROPS", nextProps);
+      // console.log("RECEIVING PROPS", nextProps);
     }
   }
 
@@ -76,10 +80,8 @@ class Main extends Component {
 
   handleRemoveItem(key) {
     this.props.deleteTask(key);
-    this.setSource(newItems, newItems);
   }
   renderRow(item) {
-    console.log("Rendering ROw", item);
     return (
       <Row
         key={item.id}
@@ -110,20 +112,24 @@ class Main extends Component {
               return <View key={rowId} style={styles.separator} />;
             }}
           />
+          {this.props.processing &&
+            <ActivityIndicator animating style={styles.spinner} size="large" />}
         </View>
       </View>
     );
   }
 }
 const mapStateToProps = state => {
-  const { id, value, complete, render, tasks } = state.taskEntry;
-  return { id, value, complete, render, tasks };
+  const { id, value, complete, render, tasks, processing } = state.taskEntry;
+  console.log(state.taskEntry);
+  return { id, value, complete, render, tasks, processing };
 };
 export default connect(mapStateToProps, {
   updateTask,
   saveTask,
   deleteTask,
-  changeStatus
+  changeStatus,
+  fetchTaskList
 })(Main);
 
 const styles = {
@@ -138,5 +144,13 @@ const styles = {
   saparator: {
     borderWidth: 1,
     borderColor: "#F5F5F5"
+  },
+  spinner: {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    left: 0,
+    justifyContent: "center",
+    alignItems: "center"
   }
 };

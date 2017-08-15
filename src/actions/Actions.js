@@ -4,55 +4,88 @@ import {
   FETCHED_TASK,
   FETCHING_TASK,
   SAVE_TASK,
-  UPDATE_VALUE
+  UPDATE_VALUE,
+  PROCESSING
 } from "./Types";
-import configureStore from "../store/configureStore";
-
-export function fetchData() {
-  return {
-    type: FETCHED_TASK
-  };
-}
+import firebase from "firebase";
+import _ from "lodash";
 
 export function deleteTask(id) {
-  const store = configureStore();
-  const { tasks } = store.getState().taskEntry;
-
-  const newTasks = tasks.filter(item => {
-    console.log(item);
-    return item.id !== id;
-  });
-  console.log("DELETING ACTION", tasks, id, newTasks);
-  //const newTasks =
-  return {
-    type: DELETE_TASK,
-    payload: newTasks
+  return (dispatch, getState) => {
+    dispatch({
+      type: PROCESSING
+    });
+    const { tasks } = getState().taskEntry;
+    const newTasks = tasks.filter(item => {
+      console.log(item);
+      return item.id !== id;
+    });
+    firebase
+      .database()
+      .ref("tasks")
+      .set(newTasks)
+      .then(() => getTask(dispatch));
   };
 }
 
 export function changeStatus(id, complete) {
-  const store = configureStore();
-  const { tasks } = store.getState().taskEntry;
-  console.log(id, complete);
-  const newTasks = tasks.map(task => {
-    if (task.id !== id) return task;
-    return {
-      ...task,
-      complete: !complete
-    };
-  });
-  return {
-    type: CHANGE_STATUS,
-    payload: newTasks
+  return (dispatch, getState) => {
+    dispatch({
+      type: PROCESSING
+    });
+    const { tasks } = getState().taskEntry;
+    const newTasks = tasks.map(task => {
+      if (task.id !== id) return task;
+      return {
+        ...task,
+        complete: !complete
+      };
+    });
+    firebase
+      .database()
+      .ref("tasks")
+      .set(newTasks)
+      .then(() => getTask(dispatch));
   };
 }
 
 export function saveTask({ id, value, complete }) {
-  return {
-    type: SAVE_TASK,
-    payload: { id, value, complete }
+  return (dispatch, getState) => {
+    dispatch({
+      type: PROCESSING
+    });
+
+    var taskListRef = firebase.database().ref("tasks");
+    var taskRef = taskListRef.push();
+    taskRef
+      .set({ id: id, value: value, complete: complete })
+      .then(() => getTask(dispatch))
+      .catch(e => {
+        console.error(e);
+      });
   };
 }
+
+export function fetchTaskList() {
+  return (dispatch, getState) => {
+    dispatch({
+      type: PROCESSING
+    });
+    getTask(dispatch);
+  };
+}
+
+const getTask = dispatch => {
+  firebase.database().ref(`/tasks`).on("value", snapshot => {
+    const newTasks = _.map(snapshot.val(), (key, index) => {
+      return key;
+    });
+    dispatch({
+      type: FETCHED_TASK,
+      payload: newTasks
+    });
+  });
+};
 
 export function updateTask({ prop, value }) {
   return {
