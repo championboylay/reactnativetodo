@@ -10,8 +10,15 @@ import {
 } from "react-native";
 import Header from "../components/Header";
 import Row from "../components/Row";
+import {
+  updateTask,
+  saveTask,
+  deleteTask,
+  changeStatus
+} from "../actions/Actions";
+import { connect } from "react-redux";
 
-export default class Main extends Component {
+class Main extends Component {
   constructor(props) {
     super(props);
     const ds = new ListView.DataSource({
@@ -34,48 +41,20 @@ export default class Main extends Component {
     AsyncStorage.getItem("items").then(json => {
       try {
         const items = JSON.parse(json);
-        this.setSource(items, items);
+        // this.setSource(items, items);
       } catch (e) {
         console.error(e);
       }
     });
   }
 
-  /*componentDidUpdate(prevProps, prevState) {
-    if (this.state.items > prevState.items) {
-      console.log("Component Changed ", this.state);
-      //this.createDataSource(this.state);
+  componentWillReceiveProps(nextProps) {
+    const { render } = nextProps;
+    if (render) {
+      this.setSource(nextProps.tasks, nextProps.tasks);
+    } else {
+      console.log("RECEIVING PROPS", nextProps);
     }
-  }*/
-
-  /*handleToggleAllComplete() {
-    const complete = !this.state.allComplete;
-    const newItems = this.state.items.map(item => {
-      return { ...item, complete };
-    });
-
-    this.setState({
-      items: newItems,
-      allComplete: complete
-    });
-    this.setSource(newItems, newItems);
-  }*/
-  handleAddingTask() {
-    if (!this.state.value) return;
-    const items = [
-      ...this.state.items,
-      {
-        key: Date.now(),
-        value: this.state.value,
-        complete: false
-      }
-    ];
-    this.setSource(items, items);
-    this.setState({
-      items,
-      value: ""
-    });
-    AsyncStorage.setItem("items", JSON.stringify(items));
   }
 
   setSource(items, itemDataSource) {
@@ -86,30 +65,27 @@ export default class Main extends Component {
     });
   }
   handleToggleComplete(key, complete) {
-    const newItems = this.state.items.map(item => {
-      if (item.key !== key) return item;
-      return {
-        ...item,
-        complete
-      };
-    });
-
-    this.setSource(newItems, newItems);
+    this.props.changeStatus(key, !complete);
   }
+
+  handleAddingTask() {
+    if (!this.props.value) return;
+    const { id, value, complete } = this.props;
+    this.props.saveTask({ id, value, complete });
+  }
+
   handleRemoveItem(key) {
-    const newItems = this.state.items.filter(item => {
-      return item.key !== key;
-    });
+    this.props.deleteTask(key);
     this.setSource(newItems, newItems);
   }
   renderRow(item) {
     console.log("Rendering ROw", item);
     return (
       <Row
-        key={item.key}
+        key={item.id}
         item={item}
-        onComplete={complete => this.handleToggleComplete(item.key, complete)}
-        onRemove={() => this.handleRemoveItem(item.key)}
+        onComplete={complete => this.handleToggleComplete(item.id, complete)}
+        onRemove={() => this.handleRemoveItem(item.id)}
       />
     );
   }
@@ -118,9 +94,9 @@ export default class Main extends Component {
     return (
       <View style={styles.container}>
         <Header
-          value={this.state.value}
+          value={this.props.value}
           onAddItem={this.handleAddingTask.bind(this)}
-          onChange={value => this.setState({ value })}
+          onChange={value => this.props.updateTask({ prop: "value", value })}
           /* onToggleAllComplete={this.handleToggleAllComplete.bind(this)}*/
         />
         <View>
@@ -139,6 +115,16 @@ export default class Main extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  const { id, value, complete, render, tasks } = state.taskEntry;
+  return { id, value, complete, render, tasks };
+};
+export default connect(mapStateToProps, {
+  updateTask,
+  saveTask,
+  deleteTask,
+  changeStatus
+})(Main);
 
 const styles = {
   container: {
