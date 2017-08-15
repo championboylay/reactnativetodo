@@ -2,8 +2,9 @@
 
 
 - [*] TODO
-- [ ] Integrate with Redux
-- [ ] Integrate Axio
+- [*] Integrate with Redux
+- [*] Integrate with ReduxThunk
+- [*] Integrate with ReduxSaga
 - [ ] Integrate React Navigation
 - [ ] Refactor the code
 
