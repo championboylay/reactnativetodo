@@ -4,7 +4,6 @@ import { TextInput, Text, View, TouchableOpacity, Switch } from "react-native";
 export default class Row extends Component {
   render() {
     const { complete, value } = this.props.item;
-    console.log(this.props.item);
     return (
       <View style={styles.container}>
         <Switch value={complete} onValueChange={this.props.onComplete} />

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1503042266137" clover="3.2.0">
+  <project timestamp="1503042266137" name="All files">
+    <metrics statements="75" coveredstatements="44" conditionals="10" coveredconditionals="7" methods="26" coveredmethods="10" elements="111" coveredelements="61" complexity="0" loc="75" ncloc="75" packages="6" files="11" classes="11">
+      <package name="actions">
+        <metrics statements="18" coveredstatements="18" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
+        <file name="Actions.js" path="D:\Training\ReactNative\reactnativetodo\src\actions\Actions.js">
+          <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
+          <line num="13" count="1" type="stmt"/>
+          <line num="20" count="1" type="stmt"/>
+          <line num="27" count="1" type="stmt"/>
+          <line num="34" count="1" type="stmt"/>
+          <line num="40" count="1" type="stmt"/>
+        </file>
+        <file name="Types.js" path="D:\Training\ReactNative\reactnativetodo\src\actions\Types.js">
+          <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="3" type="stmt"/>
+          <line num="3" count="3" type="stmt"/>
+          <line num="4" count="3" type="stmt"/>
+          <line num="5" count="3" type="stmt"/>
+          <line num="7" count="3" type="stmt"/>
+          <line num="8" count="3" type="stmt"/>
+          <line num="9" count="3" type="stmt"/>
+          <line num="11" count="3" type="stmt"/>
+          <line num="12" count="3" type="stmt"/>
+          <line num="13" count="3" type="stmt"/>
+          <line num="15" count="3" type="stmt"/>
+          <line num="16" count="3" type="stmt"/>
+          <line num="17" count="3" type="stmt"/>
+        </file>
+      </package>
+      <package name="api">
+        <metrics statements="16" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="11" coveredmethods="0"/>
+        <file name="api.js" path="D:\Training\ReactNative\reactnativetodo\src\api\api.js">
+          <metrics statements="14" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="11" coveredmethods="0"/>
+          <line num="4" count="0" type="stmt"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="7" count="0" type="stmt"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="11" count="0" type="stmt"/>
+          <line num="17" count="0" type="stmt"/>
+          <line num="18" count="0" type="stmt"/>
+          <line num="19" count="0" type="stmt"/>
+          <line num="20" count="0" type="stmt"/>
+          <line num="23" count="0" type="stmt"/>
+          <line num="26" count="0" type="stmt"/>
+          <line num="32" count="0" type="stmt"/>
+          <line num="33" count="0" type="stmt"/>
+        </file>
+        <file name="config.js" path="D:\Training\ReactNative\reactnativetodo\src\api\config.js">
+          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="1" type="stmt"/>
+        </file>
+        <file name="firebase.js" path="D:\Training\ReactNative\reactnativetodo\src\api\firebase.js">
+          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="4" count="1" type="stmt"/>
+        </file>
+        <file name="index.js" path="D:\Training\ReactNative\reactnativetodo\src\api\index.js">
+          <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        </file>
+      </package>
+      <package name="mock">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <file name="tasks_mock.js" path="D:\Training\ReactNative\reactnativetodo\src\mock\tasks_mock.js">
+          <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="2" type="stmt"/>
+          <line num="14" count="2" type="stmt"/>
+          <line num="20" count="2" type="stmt"/>
+        </file>
+      </package>
+      <package name="reducers">
+        <metrics statements="6" coveredstatements="5" conditionals="8" coveredconditionals="7" methods="1" coveredmethods="1"/>
+        <file name="TaskEntryReducer.js" path="D:\Training\ReactNative\reactnativetodo\src\reducers\TaskEntryReducer.js">
+          <metrics statements="6" coveredstatements="5" conditionals="8" coveredconditionals="7" methods="1" coveredmethods="1"/>
+          <line num="12" count="1" type="stmt"/>
+          <line num="21" count="11" type="cond" truecount="6" falsecount="1"/>
+          <line num="23" count="2" type="stmt"/>
+          <line num="25" count="0" type="stmt"/>
+          <line num="30" count="8" type="stmt"/>
+          <line num="38" count="1" type="stmt"/>
+        </file>
+      </package>
+      <package name="saga">
+        <metrics statements="23" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="4"/>
+        <file name="manageTaskListSaga.js" path="D:\Training\ReactNative\reactnativetodo\src\saga\manageTaskListSaga.js">
+          <metrics statements="23" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="4"/>
+          <line num="22" count="1" type="stmt"/>
+          <line num="23" count="1" type="stmt"/>
+          <line num="24" count="1" type="stmt"/>
+          <line num="29" count="0" type="stmt"/>
+          <line num="34" count="1" type="stmt"/>
+          <line num="35" count="1" type="stmt"/>
+          <line num="36" count="1" type="stmt"/>
+          <line num="40" count="0" type="stmt"/>
+          <line num="45" count="1" type="stmt"/>
+          <line num="46" count="1" type="stmt"/>
+          <line num="47" count="1" type="stmt"/>
+          <line num="48" count="1" type="stmt"/>
+          <line num="52" count="0" type="stmt"/>
+          <line num="57" count="1" type="stmt"/>
+          <line num="58" count="1" type="stmt"/>
+          <line num="63" count="1" type="stmt"/>
+          <line num="64" count="1" type="stmt"/>
+          <line num="68" count="0" type="stmt"/>
+          <line num="69" count="0" type="stmt"/>
+          <line num="74" count="0" type="stmt"/>
+          <line num="75" count="0" type="stmt"/>
+          <line num="76" count="0" type="stmt"/>
+          <line num="77" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="selectors">
+        <metrics statements="9" coveredstatements="2" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <file name="filteredForChangeStatusTaskList.js" path="D:\Training\ReactNative\reactnativetodo\src\selectors\filteredForChangeStatusTaskList.js">
+          <metrics statements="5" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+          <line num="1" count="1" type="stmt"/>
+          <line num="2" count="0" type="stmt"/>
+          <line num="3" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="4" count="0" type="stmt"/>
+          <line num="9" count="0" type="stmt"/>
+        </file>
+        <file name="filteredForDeleteTaskList.js" path="D:\Training\ReactNative\reactnativetodo\src\selectors\filteredForDeleteTaskList.js">
+          <metrics statements="4" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+          <line num="1" count="1" type="stmt"/>
+          <line num="2" count="0" type="stmt"/>
+          <line num="3" count="0" type="stmt"/>
+          <line num="5" count="0" type="stmt"/>
+        </file>
+      </package>
+    </metrics>
+  </project>
+</coverage>

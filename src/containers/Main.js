@@ -15,7 +15,7 @@ import {
   updateTask,
   saveTask,
   deleteTask,
-  changeStatus,
+  toggleCompleteStatus,
   fetchTaskList
 } from "../actions/Actions";
 import { connect } from "react-redux";
@@ -40,15 +40,6 @@ class Main extends Component {
 
   componentWillMount() {
     this.props.fetchTaskList();
-    /*  AsyncStorage.getItem("items").then(json => {
-      try {
-        const items = JSON.parse(json);
-        // this.setSource(items, items);
-        
-      } catch (e) {
-        console.error(e);
-      }
-    }); */
   }
 
   componentWillReceiveProps(nextProps) {
@@ -68,13 +59,15 @@ class Main extends Component {
       dataSource: this.state.dataSource.cloneWithRows(itemDataSource)
     });
   }
-  handleToggleComplete(key, complete) {
-    this.props.changeStatus(key, !complete);
+  handleToggleComplete(id, complete) {
+    console.log("MAIN", id);
+    this.props.toggleCompleteStatus(id, !complete);
   }
 
   handleAddingTask() {
     if (!this.props.value) return;
-    const { id, value, complete } = this.props;
+    const { value, complete } = this.props;
+    const id = Date.now();
     this.props.saveTask({ id, value, complete });
   }
 
@@ -96,9 +89,7 @@ class Main extends Component {
     return (
       <View style={styles.container}>
         <Header
-          value={this.props.value}
           onAddItem={this.handleAddingTask.bind(this)}
-          onChange={value => this.props.updateTask({ prop: "value", value })}
           /* onToggleAllComplete={this.handleToggleAllComplete.bind(this)}*/
         />
         <View>
@@ -120,15 +111,15 @@ class Main extends Component {
   }
 }
 const mapStateToProps = state => {
-  const { id, value, complete, render, tasks, processing } = state.taskEntry;
-  console.log(state.taskEntry);
-  return { id, value, complete, render, tasks, processing };
+  const { id, complete, value, render, tasks, processing } = state.taskEntry;
+  console.log("Main ", value);
+  return { id, complete, render, value, tasks, processing };
 };
 export default connect(mapStateToProps, {
   updateTask,
   saveTask,
   deleteTask,
-  changeStatus,
+  toggleCompleteStatus,
   fetchTaskList
 })(Main);
 

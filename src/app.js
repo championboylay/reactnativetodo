@@ -8,7 +8,7 @@ import { Provider } from "react-redux";
 export default class App extends Component {
   componentWillMount() {
     // Initialize Firebase
-    var config = {
+    /*   var config = {
       apiKey: "AIzaSyAA_3l00XRrVsqazERokyn0zHC-XCYIAuY",
       authDomain: "reactnativetodo-36f23.firebaseapp.com",
       databaseURL: "https://reactnativetodo-36f23.firebaseio.com",
@@ -16,7 +16,7 @@ export default class App extends Component {
       storageBucket: "",
       messagingSenderId: "849336920424"
     };
-    firebase.initializeApp(config);
+    firebase.initializeApp(config); */
   }
   render() {
     const store = configureStore();

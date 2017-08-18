@@ -1,14 +1,16 @@
 import {
   UPDATE_VALUE,
-  SAVE_TASK,
-  DELETE_TASK,
-  CHANGE_STATUS,
-  PROCESSING,
-  FETCHED_TASK
+  TASK_LIST_FETCH_REQUESTED,
+  TASK_LIST_FETCH_SUCCESSED,
+  TASK_SAVE_SUCCESSED,
+  TASK_DELETE_SUCCESSED,
+  TASK_CHANGE_STATUS_SUCCESSED,
+  TASK_CHANGE_STATUS_REQUESTED,
+  TASK_SAVE_REQUESTED
 } from "../actions/Types";
 
 const INITIAL_STATE = {
-  id: Date.now(),
+  id: 0,
   value: "",
   complete: false,
   render: false,
@@ -19,28 +21,19 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case UPDATE_VALUE:
       return { ...state, [action.payload.prop]: action.payload.value };
-    case SAVE_TASK:
-      return {
-        ...state,
-        id: Date.now(),
-        tasks: [...state.tasks, action.payload],
-        render: true,
-        value: ""
-      };
-    case DELETE_TASK:
-      return { ...state, tasks: action.payload, render: true };
-    case CHANGE_STATUS:
-      return { ...state, tasks: action.payload, render: true };
-    case PROCESSING:
+    case TASK_LIST_FETCH_REQUESTED:
       return { ...state, processing: true };
-    case FETCHED_TASK:
-      console.log("FETCHED_TASK", action.payload);
+    case TASK_CHANGE_STATUS_SUCCESSED:
+    case TASK_SAVE_SUCCESSED:
+    case TASK_DELETE_SUCCESSED:
+    case TASK_LIST_FETCH_SUCCESSED:
       return {
         ...state,
         tasks: action.payload,
         processing: false,
         render: true
       };
+
     default:
       return state;
   }

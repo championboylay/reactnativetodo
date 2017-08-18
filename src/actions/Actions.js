@@ -1,91 +1,40 @@
 import {
-  CHANGE_STATUS,
-  DELETE_TASK,
-  FETCHED_TASK,
-  FETCHING_TASK,
-  SAVE_TASK,
   UPDATE_VALUE,
-  PROCESSING
+  TASK_LIST_FETCH_REQUESTED,
+  TASK_LIST_FETCH_SUCCESSED,
+  TASK_SAVE_REQUESTED,
+  TASK_DELETE_REQUESTED,
+  TASK_CHANGE_STATUS_REQUESTED
 } from "./Types";
 import firebase from "firebase";
 import _ from "lodash";
 
 export function deleteTask(id) {
-  return (dispatch, getState) => {
-    dispatch({
-      type: PROCESSING
-    });
-    const { tasks } = getState().taskEntry;
-    const newTasks = tasks.filter(item => {
-      console.log(item);
-      return item.id !== id;
-    });
-    firebase
-      .database()
-      .ref("tasks")
-      .set(newTasks)
-      .then(() => getTask(dispatch));
+  return {
+    type: TASK_DELETE_REQUESTED,
+    payload: id
   };
 }
 
-export function changeStatus(id, complete) {
-  return (dispatch, getState) => {
-    dispatch({
-      type: PROCESSING
-    });
-    const { tasks } = getState().taskEntry;
-    const newTasks = tasks.map(task => {
-      if (task.id !== id) return task;
-      return {
-        ...task,
-        complete: !complete
-      };
-    });
-    firebase
-      .database()
-      .ref("tasks")
-      .set(newTasks)
-      .then(() => getTask(dispatch));
+export function toggleCompleteStatus(id, complete) {
+  return {
+    type: TASK_CHANGE_STATUS_REQUESTED,
+    payload: { id, complete }
   };
 }
 
 export function saveTask({ id, value, complete }) {
-  return (dispatch, getState) => {
-    dispatch({
-      type: PROCESSING
-    });
-
-    var taskListRef = firebase.database().ref("tasks");
-    var taskRef = taskListRef.push();
-    taskRef
-      .set({ id: id, value: value, complete: complete })
-      .then(() => getTask(dispatch))
-      .catch(e => {
-        console.error(e);
-      });
+  return {
+    type: TASK_SAVE_REQUESTED,
+    payload: { id, value, complete }
   };
 }
 
 export function fetchTaskList() {
-  return (dispatch, getState) => {
-    dispatch({
-      type: PROCESSING
-    });
-    getTask(dispatch);
+  return {
+    type: TASK_LIST_FETCH_REQUESTED
   };
 }
-
-const getTask = dispatch => {
-  firebase.database().ref(`/tasks`).on("value", snapshot => {
-    const newTasks = _.map(snapshot.val(), (key, index) => {
-      return key;
-    });
-    dispatch({
-      type: FETCHED_TASK,
-      payload: newTasks
-    });
-  });
-};
 
 export function updateTask({ prop, value }) {
   return {

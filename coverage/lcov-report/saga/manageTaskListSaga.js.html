@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for saga/manageTaskListSaga.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\prettify.css" />
+    <link rel="stylesheet" href="..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\index.html">All files</a> / <a href="index.html">saga</a> manageTaskListSaga.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">60.87% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>14/23</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">80% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>4/5</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">60.87% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>14/23</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { call, put, select, takeEvery, takeLatest } from "redux-saga/effects";
+import {
+  TASK_LIST_FETCH_SUCCESSED,
+  TASK_LIST_FETCH_FAILED,
+  TASK_LIST_FETCH_REQUESTED,
+  TASK_SAVE_REQUESTED,
+  TASK_SAVE_SUCCESSED,
+  TASK_SAVE_FAILED,
+  TASK_DELETE_REQUESTED,
+  TASK_DELETE_SUCCESSED,
+  TASK_DELETE_FAILED,
+  TASK_CHANGE_STATUS_REQUESTED,
+  TASK_CHANGE_STATUS_SUCCESSED,
+  TASK_CHANGE_STATUS_FAILED
+} from "../actions/Types";
+import { fetchTaskListSuccess } from "../actions/Actions.js";
+import { getTaskList, saveTaskListToFB, saveTaskToFB } from "../api";
+import getFilteredForDeleteTaskList from "../selectors/filteredForDeleteTaskList";
+import getfilteredForChangeStatusTaskList from "../selectors/filteredForChangeStatusTaskList";
+&nbsp;
+export function* fetchTaskList(action) {
+  try {
+    const tasks = yield call(getTaskList);
+    yield put({
+      type: TASK_LIST_FETCH_SUCCESSED,
+      payload: tasks
+    });
+  } catch (e) {
+<span class="cstat-no" title="statement not covered" >    yield put({ type: TASK_LIST_FETCH_FAILED, message: e.message });</span>
+  }
+}
+&nbsp;
+export function* saveTask(action) {
+  try {
+    yield call(saveTaskToFB, action.payload);
+    yield put({
+      type: TASK_LIST_FETCH_REQUESTED
+    });
+  } catch (e) {
+<span class="cstat-no" title="statement not covered" >    yield put({ type: TASK_SAVE_FAILED, message: e.message });</span>
+  }
+}
+&nbsp;
+export function* deleteTask(action) {
+  try {
+    const taskList = yield select(getFilteredForDeleteTaskList, action.payload);
+    yield call(saveTaskListToFB, taskList);
+    yield put({
+      type: TASK_LIST_FETCH_REQUESTED
+    });
+  } catch (e) {
+<span class="cstat-no" title="statement not covered" >    yield put({ type: TASK_DELETE_FAILED, message: e.message });</span>
+  }
+}
+&nbsp;
+export function* toggleCompleteStatus(action) {
+  try {
+    const newTasks = yield select(
+      getfilteredForChangeStatusTaskList,
+      action.payload.id,
+      action.payload.complete
+    );
+    yield call(saveTaskListToFB, newTasks);
+    yield put({
+      type: TASK_LIST_FETCH_REQUESTED
+    });
+  } catch (e) {
+<span class="cstat-no" title="statement not covered" >    console.log(e);</span>
+<span class="cstat-no" title="statement not covered" >    yield put({ type: TASK_CHANGE_STATUS_FAILED, message: e.message });</span>
+  }
+}
+&nbsp;
+export function* <span class="fstat-no" title="function not covered" >watchManageTaskListSaga(</span>) {
+<span class="cstat-no" title="statement not covered" >  yield takeLatest(TASK_LIST_FETCH_REQUESTED, fetchTaskList);</span>
+<span class="cstat-no" title="statement not covered" >  yield takeLatest(TASK_SAVE_REQUESTED, saveTask);</span>
+<span class="cstat-no" title="statement not covered" >  yield takeLatest(TASK_DELETE_REQUESTED, deleteTask);</span>
+<span class="cstat-no" title="statement not covered" >  yield takeLatest(TASK_CHANGE_STATUS_REQUESTED, toggleCompleteStatus);</span>
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Aug 18 2017 14:14:26 GMT+0630 (Myanmar Standard Time)
+</div>
+</div>
+<script src="..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\sorter.js"></script>
+</body>
+</html>

@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { TextInput, Text, View, TouchableOpacity } from "react-native";
+import { saveTask, updateTask } from "../actions/Actions";
+import { connect } from "react-redux";
 
-export default class Header extends Component {
+class Header extends Component {
   render() {
     return (
       <View style={styles.header}>
@@ -12,7 +14,8 @@ export default class Header extends Component {
         </TouchableOpacity>
         <TextInput
           value={this.props.value}
-          onChangeText={this.props.onChange}
+          onChangeText={value =>
+            this.props.updateTask({ prop: "value", value })}
           onSubmitEditing={this.props.onAddItem}
           style={styles.input}
           placeholder="What needs to do?"
@@ -39,3 +42,9 @@ const styles = {
     alignItems: "center"
   }
 };
+
+const mapStateToProps = state => {
+  const { value } = state.taskEntry;
+  return { value };
+};
+export default connect(mapStateToProps, { updateTask })(Header);
