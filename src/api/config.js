@@ -1,5 +1,4 @@
-import * as firebase from "firebase";
-const config = {
+export const firebaseConfig = {
   apiKey: "AIzaSyAA_3l00XRrVsqazERokyn0zHC-XCYIAuY",
   authDomain: "reactnativetodo-36f23.firebaseapp.com",
   databaseURL: "https://reactnativetodo-36f23.firebaseio.com",
@@ -7,6 +6,3 @@ const config = {
   storageBucket: "",
   messagingSenderId: "849336920424"
 };
-
-firebase.initializeApp(config);
-export default firebase;

@@ -19,6 +19,7 @@ import getFilteredForDeleteTaskList from "../selectors/filteredForDeleteTaskList
 import getfilteredForChangeStatusTaskList from "../selectors/filteredForChangeStatusTaskList";
 
 export function* fetchTaskList(action) {
+  console.log("FETCHING list");
   try {
     const tasks = yield call(getTaskList);
     yield put({
@@ -26,6 +27,7 @@ export function* fetchTaskList(action) {
       payload: tasks
     });
   } catch (e) {
+    console.error(e);
     yield put({ type: TASK_LIST_FETCH_FAILED, message: e.message });
   }
 }
@@ -71,7 +73,7 @@ export function* toggleCompleteStatus(action) {
 }
 
 export function* watchManageTaskListSaga() {
-  yield takeLatest(TASK_LIST_FETCH_REQUESTED, fetchTaskList);
+  yield takeEvery(TASK_LIST_FETCH_REQUESTED, fetchTaskList);
   yield takeLatest(TASK_SAVE_REQUESTED, saveTask);
   yield takeLatest(TASK_DELETE_REQUESTED, deleteTask);
   yield takeLatest(TASK_CHANGE_STATUS_REQUESTED, toggleCompleteStatus);
