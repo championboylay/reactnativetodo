@@ -39,6 +39,7 @@ class Main extends Component {
   }
 
   componentWillMount() {
+    // alert();
     this.props.fetchTaskList();
   }
 

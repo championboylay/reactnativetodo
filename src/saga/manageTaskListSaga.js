@@ -70,9 +70,9 @@ export function* toggleCompleteStatus(action) {
   }
 }
 
-export function* watchManageTaskListSaga() {
-  yield takeLatest(TASK_LIST_FETCH_REQUESTED, fetchTaskList);
-  yield takeLatest(TASK_SAVE_REQUESTED, saveTask);
-  yield takeLatest(TASK_DELETE_REQUESTED, deleteTask);
-  yield takeLatest(TASK_CHANGE_STATUS_REQUESTED, toggleCompleteStatus);
-}
+export const manageTaskSaga = [
+  takeLatest(TASK_LIST_FETCH_REQUESTED, fetchTaskList),
+  takeLatest(TASK_SAVE_REQUESTED, saveTask),
+  takeLatest(TASK_DELETE_REQUESTED, deleteTask),
+  takeLatest(TASK_CHANGE_STATUS_REQUESTED, toggleCompleteStatus)
+];

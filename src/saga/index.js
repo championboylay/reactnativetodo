@@ -1,12 +1,15 @@
-import { fork, spawn } from "redux-saga/effects";
-import { watchManageTaskListSaga } from "./manageTaskListSaga";
-import startup from "./startup";
+import "babel-polyfill";
+import "regenerator-runtime/runtime";
+import { fork, spawn, all } from "redux-saga/effects";
+
+import { manageTaskSaga } from "./manageTaskListSaga";
+//import startup from "./startup";
 
 /*
  * The entry point for all the sagas used in this application.
  */
 const root = function* root() {
-  yield [fork(watchManageTaskListSaga), fork(startup)];
+  yield all([...manageTaskSaga]);
 };
 
 export default root;

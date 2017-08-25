@@ -5,7 +5,7 @@
 - [*] Integrate with Redux
 - [*] Integrate with ReduxThunk
 - [*] Integrate with ReduxSaga
-- [ ] Integrate React Navigation
+- [*] Integrate React Navigation with redux
 - [ ] Refactor the code
 
 
