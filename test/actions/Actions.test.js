@@ -4,14 +4,14 @@ import {
   toggleCompleteStatus,
   deleteTask,
   updateTask
-} from "../Actions";
+} from "../../src/actions/Actions.js";
 import {
   TASK_LIST_FETCH_REQUESTED,
   TASK_SAVE_REQUESTED,
   TASK_CHANGE_STATUS_REQUESTED,
   TASK_DELETE_REQUESTED,
   UPDATE_VALUE
-} from "../Types";
+} from "../../src/actions/Types";
 
 const id = Date.now();
 const value = "NEW TASK";

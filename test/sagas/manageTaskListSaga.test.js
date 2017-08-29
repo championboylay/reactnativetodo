@@ -11,18 +11,18 @@ import {
   TASK_CHANGE_STATUS_REQUESTED,
   TASK_CHANGE_STATUS_SUCCESSED,
   TASK_CHANGE_STATUS_FAILED
-} from "../../actions/Types.js";
+} from "../../src/actions/Types.js";
 import {
   fetchTaskList,
   saveTask,
   deleteTask,
   toggleCompleteStatus
-} from "../manageTaskListSaga";
+} from "../../src/saga/manageTaskListSaga";
 import { call, put, take, select } from "redux-saga/effects";
-import { getTaskList, saveTaskListToFB, saveTaskToFB } from "../../api";
-import { TASK_LIST_MOCK, TASK_MOCK, TASK_ID } from "../../mock/tasks_mock";
-import getTaskEntry from "../../selectors/filteredForDeleteTaskList";
-import getfilteredForChangeStatusTaskList from "../../selectors/filteredForChangeStatusTaskList";
+import { getTaskList, saveTaskListToFB, saveTaskToFB } from "../../src/api";
+import { TASK_LIST_MOCK, TASK_MOCK, TASK_ID } from "../../src/mock/tasks_mock";
+import getTaskEntry from "../../src/selectors/filteredForDeleteTaskList";
+import getfilteredForChangeStatusTaskList from "../../src/selectors/filteredForChangeStatusTaskList";
 describe("We will test fetchTaskList(), generator function. ", () => {
   const action = {
     type: TASK_LIST_FETCH_REQUESTED

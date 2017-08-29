@@ -1,4 +1,4 @@
-import reducer from "../TaskEntryReducer";
+import reducer from "../../src/reducers/TaskEntryReducer";
 import {
   UPDATE_VALUE,
   TASK_LIST_FETCH_REQUESTED,
@@ -6,8 +6,8 @@ import {
   TASK_SAVE_SUCCESSED,
   TASK_DELETE_SUCCESSED,
   TASK_CHANGE_STATUS_SUCCESSED
-} from "../../actions/Types.js";
-import { TASK_LIST_MOCK, TASK_MOCK } from "../../mock/tasks_mock";
+} from "../../src/actions/Types.js";
+import { TASK_LIST_MOCK, TASK_MOCK } from "../../src/mock/tasks_mock";
 
 describe("Task Entry Reducer Test ", () => {
   let expected = {
