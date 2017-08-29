@@ -7,7 +7,8 @@ import {
   ListView,
   Keyboard,
   AsyncStorage,
-  ActivityIndicator
+  ActivityIndicator,
+  Button
 } from "react-native";
 import Header from "../components/Header";
 import Row from "../components/Row";
@@ -20,7 +21,16 @@ import {
 } from "../actions/Actions";
 import { connect } from "react-redux";
 
-class Main extends Component {
+class MainScreen extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    title: "Home",
+    headerRight: (
+      <Button
+        title="Add"
+        onPress={() => navigation.navigate("TaskFormScreen", { item: "AMH" })}
+      />
+    )
+  });
   constructor(props) {
     super(props);
     const ds = new ListView.DataSource({
@@ -44,7 +54,6 @@ class Main extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("RECEIVING PROPS", nextProps);
     const { render, tasks } = nextProps;
     if (render) {
       this.setSource(nextProps.tasks, nextProps.tasks);
@@ -61,15 +70,7 @@ class Main extends Component {
     });
   }
   handleToggleComplete(id, complete) {
-    console.log("MAIN", id);
     this.props.toggleCompleteStatus(id, !complete);
-  }
-
-  handleAddingTask() {
-    if (!this.props.value) return;
-    const { value, complete } = this.props;
-    const id = Date.now();
-    this.props.saveTask({ id, value, complete });
   }
 
   handleRemoveItem(key) {
@@ -89,10 +90,6 @@ class Main extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Header
-          onAddItem={this.handleAddingTask.bind(this)}
-          /* onToggleAllComplete={this.handleToggleAllComplete.bind(this)}*/
-        />
         <View>
           <ListView
             style={styles.container}
@@ -113,7 +110,6 @@ class Main extends Component {
 }
 const mapStateToProps = state => {
   const { id, complete, value, render, tasks, processing } = state.taskEntry;
-  console.log("Main ", value);
   return { id, complete, render, value, tasks, processing };
 };
 export default connect(mapStateToProps, {
@@ -122,7 +118,7 @@ export default connect(mapStateToProps, {
   deleteTask,
   toggleCompleteStatus,
   fetchTaskList
-})(Main);
+})(MainScreen);
 
 const styles = {
   container: {

@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { AppRegistry, StyleSheet, Text, View } from "react-native";
-import MainScreen from "./containers/MainScreen";
 import configureStore from "./store/configureStore";
 import firebase from "firebase";
 import { Provider } from "react-redux";
-//import ReduxNavigation from "./navigation/ReduxNavigation";
+import ReduxNavigation from "./navigation/ReduxNavigation";
 
 export default class App extends Component {
   componentWillMount() {}
@@ -12,7 +11,7 @@ export default class App extends Component {
     const store = configureStore();
     return (
       <Provider store={store}>
-        <MainScreen />
+        <ReduxNavigation />
       </Provider>
     );
   }

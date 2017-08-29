@@ -7,11 +7,6 @@ class Header extends Component {
   render() {
     return (
       <View style={styles.header}>
-        <TouchableOpacity onPress={null}>
-          <Text style={styles.toggleIcon}>
-            {String.fromCharCode(10003)}
-          </Text>
-        </TouchableOpacity>
         <TextInput
           value={this.props.value}
           onChangeText={value =>
@@ -20,6 +15,11 @@ class Header extends Component {
           style={styles.input}
           placeholder="What needs to do?"
         />
+        <TouchableOpacity onPress={this.props.onAddItem}>
+          <Text style={styles.toggleIcon}>
+            {String.fromCharCode(10003)}
+          </Text>
+        </TouchableOpacity>
       </View>
     );
   }

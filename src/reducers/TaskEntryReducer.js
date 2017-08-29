@@ -29,6 +29,7 @@ export default (state = INITIAL_STATE, action) => {
     case TASK_LIST_FETCH_SUCCESSED:
       return {
         ...state,
+        value: "",
         tasks: action.payload,
         processing: false,
         render: true

@@ -18,6 +18,8 @@ import { getTaskList, saveTaskListToFB, saveTaskToFB } from "../api";
 import getFilteredForDeleteTaskList from "../selectors/filteredForDeleteTaskList";
 import getfilteredForChangeStatusTaskList from "../selectors/filteredForChangeStatusTaskList";
 
+import { NavigationActions } from "react-navigation";
+
 export function* fetchTaskList(action) {
   try {
     const tasks = yield call(getTaskList);
@@ -32,10 +34,13 @@ export function* fetchTaskList(action) {
 
 export function* saveTask(action) {
   try {
+    console.log("Saving ", action);
+
     yield call(saveTaskToFB, action.payload);
     yield put({
       type: TASK_LIST_FETCH_REQUESTED
     });
+    yield put(NavigationActions.navigate({ routeName: "MainScreen" }));
   } catch (e) {
     yield put({ type: TASK_SAVE_FAILED, message: e.message });
   }
@@ -65,14 +70,6 @@ export function* toggleCompleteStatus(action) {
       type: TASK_LIST_FETCH_REQUESTED
     });
   } catch (e) {
-    console.log(e);
     yield put({ type: TASK_CHANGE_STATUS_FAILED, message: e.message });
   }
 }
-
-export const manageTaskSaga = [
-  takeLatest(TASK_LIST_FETCH_REQUESTED, fetchTaskList),
-  takeLatest(TASK_SAVE_REQUESTED, saveTask),
-  takeLatest(TASK_DELETE_REQUESTED, deleteTask),
-  takeLatest(TASK_CHANGE_STATUS_REQUESTED, toggleCompleteStatus)
-];
